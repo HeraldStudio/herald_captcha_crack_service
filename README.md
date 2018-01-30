@@ -51,7 +51,7 @@ img = Image.open(io.BytesIO(response.content))
 3. 初始化CNN
 
 ```python
-from cnn_captcha_crack import CNN_Captcha_Crack
+from tflearn_captcha_crack import CNN_Captcha_Crack
 
 cnn = CNN_Captcha_Crack()
 ```
