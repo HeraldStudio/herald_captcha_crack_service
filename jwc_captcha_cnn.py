@@ -8,7 +8,8 @@ import numpy as np
 from PIL import Image
 
 
-MODEL_NAME = 'seu_captcha.tflearn'
+MODEL_NAME = 'gpa_captcha.tflearn'
+MODEL_PATH = './models'
 
 MAX_CAPTCHA = 4  # 验证码字符长度（4位验证码）（4）
 CHAR_SET_LEN = 10  # 验证码字符取值（0-9）（10）
@@ -51,7 +52,7 @@ def convert2gray(img):
         return img
 
 
-class CNN_Captcha_Crack(object):
+class JWCCaptchaCrack(object):
     def __init__(self):
         # 定义网络架构并加载模型
         network = input_data(shape=[None, IMAGE_HEIGHT, IMAGE_WIDTH, 1], name='input')
@@ -72,7 +73,7 @@ class CNN_Captcha_Crack(object):
         network = regression(network, optimizer='adam', learning_rate=0.001,
                              loss='categorical_crossentropy', name='target')
         self.cnn = tflearn.DNN(network)
-        self.cnn.load(MODEL_NAME)
+        self.cnn.load(os.path.join(MODEL_PATH, MODEL_NAME))
 
     def predict(self, image):
         vec = np.zeros([1, IMAGE_HEIGHT, IMAGE_WIDTH])
