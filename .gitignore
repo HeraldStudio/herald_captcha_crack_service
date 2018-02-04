@@ -1,0 +1,9 @@
+
+.idea/
+models/.DS_Store
+models/gpa_captcha.tflearn.data-00000-of-00001
+models/gpa_captcha.tflearn.index
+models/gpa_captcha.tflearn.meta
+models/library_captcha.tflearn.data-00000-of-00001
+models/library_captcha.tflearn.index
+models/library_captcha.tflearn.meta
