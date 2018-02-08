@@ -15,12 +15,18 @@ print('[+]教务处验证码攻击模型加载完毕')
 
 class JWCHandler(tornado.web.RequestHandler):
     async def get(self):
-        response = await http_client.fetch(CAPTCHA_URL)
-        cookies = response.headers['Set-Cookie']
-        cookies = cookies.split(';')[0]
+        cookies = self.get_argument('cookie', None)
+        if cookies is not None:
+            request = HTTPRequest(url=CAPTCHA_URL, headers={'cookie': cookies})
+        else:
+            request = HTTPRequest(url=CAPTCHA_URL)
+        response = await http_client.fetch(request)
+        if 'Set-Cookie' in response.headers:
+            cookies = response.headers['Set-Cookie']
+            cookies = cookies.split(';')[0]
         img = Image.open(io.BytesIO(response.body))
         result = cnn.predict(img)
-        self.write({'cookies':cookies, 'captcha':result})
+        self.write({'cookies': cookies, 'captcha': result})
 
 
 def herald_jwc_crack_service():

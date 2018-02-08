@@ -7,6 +7,14 @@
 * 教务处选课系统验证码
 * 图书馆个人账户登陆验证码
 
+## 使用方法
+
+** GET ** 请求根路径, 例如： `/jwccaptcha/`
+
+如果需要携带原始cookie，请直接附带于query中，例如：
+
+`/jwccaptcha/?cookie=JSESSIONID=0000o1asdf2Xhf8ObUDdsVwq06:16tmskveg`
+
 ## 部署环境
 
 建议使用 Anaconda3 管理环境和依赖，为服务提供独立虚拟环境，避免依赖污染
